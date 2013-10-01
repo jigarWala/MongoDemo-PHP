@@ -10,12 +10,13 @@
   }
 ?>
 <head>
-	<title>My Diary</title>
+  <title>My Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <script type="text/javascript" src="js/lib/jquery.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   
   <style>
     html, body {height: 100%;}
@@ -100,7 +101,5 @@
   </div> <!-- Container End -->
   </div> <!-- wrap End -->
 
-  
-  <script type="text/javascript" src="/js/lib/angular.js"></script>
 </body>
 </html>

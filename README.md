@@ -13,6 +13,6 @@ While running this application on your server, please make sure:
 1. Mongo PHP driver is installed
 2. Correct Mongo DB URL and credentails are used in mongo.php file.
 
-Email mailto:me@jayeshcp.com if you need any help with this project.
+Email me@jayeshcp.com if you need any help with this project.
 
 Enjoy !

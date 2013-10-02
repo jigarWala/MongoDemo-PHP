@@ -19,7 +19,7 @@ While running this application on your server, please make sure:
 
 
 ####Screenshots:####
-<img src="http://jayeshcp.files.wordpress.com/2013/10/mongodb-php-demo.png">
+<img src="http://jayeshcp.files.wordpress.com/2013/10/mongodb-php-demo1.png">
 
 Email me@jayeshcp.com if you need any help with this project.
 

@@ -8,6 +8,7 @@
    
       // Connect to MongoDB
       private function connect() {
+        // Change username, password, db url and db name as per your settings
         $con = new Mongo("mongodb://diaryuser:diarypassword@ds05492.mongolab.com:63297/mydiary");
         //$con = new Mongo("mongodb://diaryuser:diaryuser@localhost:27017/mydiary");
         return $con;

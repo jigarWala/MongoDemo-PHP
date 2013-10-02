@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="diaryApp">
 <?php
   include('mongo.php');
   
@@ -10,13 +10,15 @@
   }
 ?>
 <head>
-  <title>My Diary</title>
+	<title>My Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script type="text/javascript" src="js/App.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.js"></script>
   
   <style>
     html, body {height: 100%;}
@@ -24,79 +26,66 @@
     
   </style>
   <script type="text/javascript">
+    
+    
     $('document').ready(function(){
-        refresh();
-        
         $('#txtPost').focus();
-        $("#mynotes").html("<tr><td style=\"text-align:center;height:300px; width:100%;background-color:white; v-align:center;\"><img src=\"img/loading.gif\"></td></tr>");
+        //$("#mynotes").html("<tr><td style=\"text-align:center;height:300px; width:100%;background-color:white; v-align:center;\"><img src=\"img/loading.gif\"></td></tr>");
     });
     
-    function deleteNote(id) {
-      if(confirm("Deleting post. Are you sure?")) {
-        $.ajax({
-          type: "POST",
-          url: "diaryapi.php",
-          data: { action: "delete", id: id}
-        })
-        .done(function( msg ) {
-            refresh();
-        });
-      }
-        
-    }
-    
-    function refresh() {
-        $.ajax({
-          type: "POST",
-          url: "diaryapi.php",
-          data: { action: "get", id: "0"}
-        })
-        .done(function( data ) {
-            //alert("Refreshed: " + data);
-            $("#mynotes").html(data);
-        });
-        
-        getcount();
-    }
-    
-    function getcount() {
-        $.ajax({
-          type: "POST",
-          url: "diaryapi.php",
-          data: { action: "getcount", id: "0"}
-        })
-        .done(function( data ) {
-            //alert("Refreshed: " + data);
-            $("#count").html(data);
-        });
-    }
   </script>
 </head>
-<body>
+<body ng-controller="DiaryController">
   <div id="wrap">
   <div class="container-fluid">
   
     <div class="row-fluid">
       <div class="span12">
-        <h1><a href="/todo"><img src="img/Book.png">My Diary</a></h1>
-    
-        <form class="form-inline" method="POST" action="index.php">
-          <textarea name="txtPost" id="txtPost" rows="5" class="form-control" placeholder="enter note" style="width:90%;" requestfocus></textarea>
-          <button name="btnPost" class="btn btn-success"><i class="icon icon-share"></i>&nbsp;Post</button>
-        </form>
+        <h1><a href="/mydiary"><img src="img/Book.png">My Diary</a></h1>
+        
+        <div class="alert alert-block alert-error notification fade in" data-ng-show="showDeletePopup">
+            <h6>Are you sure you want to delete this note?</h6>
+            <div class="form-controls-alert">
+                <a href="" class="btn" ng-click="showDeleteLocationPopup(false)">No</a>
+                <a href="" class="btn btn-danger" ng-click="deleteNote(locationId)" autofocus>Yes</a>
+            </div>
+        </div>
+        
+          <textarea name="txtPost" ng-model="txtPost" rows="5" class="form-control span12" placeholder="enter note"  required autofocus></textarea>
+          <button name="btnPost" class="btn btn-success btn-large" ng-click="saveNote()" ng-disabled="!txtPost">
+            <i class="icon icon-white icon-share"></i>&nbsp;Post
+          </button>
+          <div ng-show="txtPost" class="muted pull-right">{{txtPost.length}} characters !</div>
+        
       </div>
     </div>
   
-    <div class="pull-right"><span id="count">0</span> Posts</div>
-    
+    <hr></hr>
+    <div class="pull-right label label-warning">{{notescount()}} Posts</div>
+        
     <div class="row-fluid">
       <div class="span12">
+        <h3 ng-show="notescount()==0" class="text-warning well">No notes in your diary yet !</h3>
         
-        <table class="table" id="mynotes">
+        <table class="table" id="mynotes" ng-hide="notescount==0">
+          <tr class="info" ng-repeat="item in notes">
+            <td style="padding-top:15px; padding-bottom:15px;">
+              <button type="button" class="close" id="{{item._id}}" ng-click="showDeleteLocationPopup(true, $index)" title="Delete note"><i class="icon icon-trash"></i></button>
+              <div style="font-size:12px;">
+                <span class="muted" >
+                  8:20 PM Oct 1, 2013
+                </span>
+              </div>
+              <div style="color:#2c3e50;margin-top:10px;">{{item.note}}</div>
+            </td>
+          </tr>
           
         </table>
+        
       </div>
     </div>
+    
+    
     
   </div> <!-- Container End -->
   </div> <!-- wrap End -->

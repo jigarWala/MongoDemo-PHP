@@ -1,24 +1,24 @@
 <?php
 
     class MongoDB1 {
+      // Constructor
       function __construct() {
-        // do something here if required
+        //MongoDB1::connect();
       }
    
       // Connect to MongoDB
       private function connect() {
-      	$username = "diaryuser";
-      	$pass = "diarypass";
-        $con = new Mongo("mongodb://" . $username . ":" . $pass . "@ds0544345.mongolab.com:66297/mydiary");
+        $con = new Mongo("mongodb://diaryuser:diarypassword@ds05492.mongolab.com:63297/mydiary");
+        //$con = new Mongo("mongodb://diaryuser:diaryuser@localhost:27017/mydiary");
         return $con;
       }
       
-      // Get count of all the notes in collection
       public function getNotesCount() {
         try{
           $con = MongoDB1::connect();
           $myCollection = $con->mydiary->diary; // mydiary: database, diary: collection
 
+          // Find everything in our collection:
           $count = $myCollection->count();
         } catch (MongoCursorException $e) {
           echo "Error message: ".$e->getMessage()."<br/>";
@@ -27,9 +27,9 @@
         return $count; 
       }
       
-      // Get all notes in collection
       public function getNotes() {
         $results = [];
+        
         
         try{
           $con = MongoDB1::connect();
@@ -63,7 +63,6 @@
   
       }
       
-      // Save note to collection
       public function saveNote($post) {
          try{
           $con = MongoDB1::connect();
@@ -80,7 +79,6 @@
         }
       }
       
-      // Delete note from collection
       public function deleteNote($id) {
           try{
             $con = MongoDB1::connect();

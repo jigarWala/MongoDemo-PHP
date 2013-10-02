@@ -3,7 +3,6 @@ var app = angular.module('diaryApp', []);
 app.controller('DiaryController', function($scope, $http) {
 
   $scope.notes = [];
-  $scope.showDeletePopup = false;
   
   // Get all todos
   $http({
@@ -18,12 +17,7 @@ app.controller('DiaryController', function($scope, $http) {
       $scope.notes = data || "Request failed";
   });
   
-  $scope.showDeleteLocationPopup = function(options, id) {
-    if (options === true) {
-        $scope.showDeletePopup = true;
-    } else {
-        $scope.showDeletePopup = false;
-    }
+  $scope.updateLocationId = function(id) {
     $scope.locationId = id;
   };
 
@@ -39,7 +33,6 @@ app.controller('DiaryController', function($scope, $http) {
           headers: {'Content-Type': 'application/json'}
       }).success(function(data, status) {
           $scope.notes.splice(id,1);
-          $scope.showDeletePopup = false;
       }).
       error(function(data, status) {
           $scope.notes = data || "Request failed";

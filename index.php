@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="diaryApp">
-<?php
-  include('mongo.php');
-  
-  if(isset($_POST['btnPost'])) {
-    $db2 = new MongoDB1();
-    $db2->saveNote($_POST['txtPost']);
-    $db2 = null;
-  }
-?>
 <head>
 	<title>My Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,10 +18,8 @@
   </style>
   <script type="text/javascript">
     
-    
     $('document').ready(function(){
         $('#txtPost').focus();
-        //$("#mynotes").html("<tr><td style=\"text-align:center;height:300px; width:100%;background-color:white; v-align:center;\"><img src=\"img/loading.gif\"></td></tr>");
     });
     
   </script>
@@ -73,7 +62,7 @@
               <button type="button" class="close" id="{{item._id}}" ng-click="showDeleteLocationPopup(true, $index)" title="Delete note"><i class="icon icon-trash"></i></button>
               <div style="font-size:12px;">
                 <span class="muted" >
-                  8:20 PM Oct 1, 2013
+                  8:20 PM Oct 1, 2013 <!-- TODO: change this to correct date from db collection record -->
                 </span>
               </div>
               <div style="color:#2c3e50;margin-top:10px;">{{item.note}}</div>
@@ -84,8 +73,6 @@
         
       </div>
     </div>
-    
-    
     
   </div> <!-- Container End -->
   </div> <!-- wrap End -->

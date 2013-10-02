@@ -3,6 +3,7 @@
 <head>
 	<title>My Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/Book1.ico">
   
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -14,12 +15,14 @@
   <style>
     html, body {height: 100%;}
     body {background-color:#2c3e50;color:#feffff; margin-bottom:80px;}
-    
+    .version {font-size:10pt;}
   </style>
   <script type="text/javascript">
     
+    
     $('document').ready(function(){
         $('#txtPost').focus();
+        //$("#mynotes").html("<tr><td style=\"text-align:center;height:300px; width:100%;background-color:white; v-align:center;\"><img src=\"img/loading.gif\"></td></tr>");
     });
     
   </script>
@@ -30,7 +33,7 @@
   
     <div class="row-fluid">
       <div class="span12">
-        <h1><a href="/mydiary"><img src="img/Book.png">My Diary</a></h1>
+        <h1><a href="/mydiary"><img src="img/Book1.png" width="45" height="50">My Diary</a><span class="version">&nbsp;1.0</span></h1>
         
         <div class="alert alert-block alert-error notification fade in" data-ng-show="showDeletePopup">
             <h6>Are you sure you want to delete this note?</h6>
@@ -40,7 +43,7 @@
             </div>
         </div>
         
-          <textarea name="txtPost" ng-model="txtPost" rows="5" class="form-control span12" placeholder="enter note"  required autofocus></textarea>
+          <textarea name="txtPost" ng-model="txtPost" rows="5" class="form-control span12" placeholder="Share what's new .."  required autofocus></textarea>
           <button name="btnPost" class="btn btn-success btn-large" ng-click="saveNote()" ng-disabled="!txtPost">
             <i class="icon icon-white icon-share"></i>&nbsp;Post
           </button>
@@ -62,10 +65,10 @@
               <button type="button" class="close" id="{{item._id}}" ng-click="showDeleteLocationPopup(true, $index)" title="Delete note"><i class="icon icon-trash"></i></button>
               <div style="font-size:12px;">
                 <span class="muted" >
-                  8:20 PM Oct 1, 2013 <!-- TODO: change this to correct date from db collection record -->
+                  {{item.postedon | date:'MMM d, y hh:mm a'}}
                 </span>
               </div>
-              <div style="color:#2c3e50;margin-top:10px;">{{item.note}}</div>
+              <div style="color:#2c3e50;margin-top:10px;" ng-bind-html-unsafe="item.note"></div>
             </td>
           </tr>
           
@@ -73,7 +76,6 @@
         
       </div>
     </div>
-    
   </div> <!-- Container End -->
   </div> <!-- wrap End -->
 

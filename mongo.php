@@ -63,12 +63,13 @@
   
       }
       
-      public function saveNote($post) {
+      public function saveNote($post, $timestamp) {
          try{
           $con = MongoDB1::connect();
           $myCollection = $con->mydiary->diary;
           $doc = array(
-              "note" => $post
+              "note" => $post,
+              "postedon" => $timestamp
           );
 
           $myCollection->insert($doc);

@@ -36,7 +36,7 @@
     
   } else if($action == "save") {
     $db2 = new MongoDB1();
-    $db2->saveNote($params->txtPost);
+    $db2->saveNote($params->txtPost, $params->postedon);
     $notes = $db->getNotes();
     $result = [];
     foreach($notes as $note) {

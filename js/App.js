@@ -51,11 +51,15 @@ app.controller('DiaryController', function($scope, $http) {
   }
   
   $scope.saveNote = function() {
-    if($scope.txtPost != "") {
-        $http({
+    var text = $scope.txtPost;
+    if (text) { text = text.replace(/\n\r?/g, '<br/>'); }
+    
+    var timestamp = new Date();
+    
+    $http({
           url: 'diaryapi.php', 
           method: "POST",
-          data: {action: "save", txtPost: $scope.txtPost},
+          data: {action: "save", txtPost: text, postedon: timestamp},
           headers: {'Content-Type': 'application/json'}
         }).success(function(data, status) {
             $scope.notes = data;
@@ -64,7 +68,6 @@ app.controller('DiaryController', function($scope, $http) {
         error(function(data, status) {
             $scope.notes = data || "Request failed";
         });
-    }
   }
 
 

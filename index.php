@@ -10,6 +10,7 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
   <script type="text/javascript" src="js/App.js"></script>
+  <script type="text/javascript" src="js/AppFactory.js"></script>
   <script type="text/javascript" src="js/lib/jquery.js"></script>
   <script type="text/javascript" src="js/lib/bootstrap-modal.js"></script>
   

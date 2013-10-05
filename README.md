@@ -19,7 +19,10 @@ While running this application on your server, please make sure:
 
 
 ####Screenshots:####
-<img src="http://jayeshcp.files.wordpress.com/2013/10/mongodb-php-demo1.png">
+<img src="http://jayeshcp.files.wordpress.com/2013/10/my_diary.png" alt="MongoDemo PHP - Main Screen">
+
+<img src="http://jayeshcp.files.wordpress.com/2013/10/my_diary_and_jayeshcp_mongodemo-php.png" 
+alt="MongoDemo PHP - Sliding Panel">
 
 Email me@jayeshcp.com if you need any help with this project.
 

@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700italic,700,300italic,300|Acme); /* Acme font is required for .arrow */
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
@@ -32,3 +34,86 @@
 .container .credit {
   margin: 20px 0;
 }
+
+
+/******** Sliding Panel *******************************************/
+
+/*****SLIDING MENU PANEL STYLESHEET*****/
+
+/*****ANIMATONS (optional)*****/
+
+#menu, #menu .arrow, #menu nav a {
+	transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+}
+
+/*****END ANIMATONS*****/
+
+
+/*****PANEL*****/
+
+#menu {
+	background: #486A8B;
+	border-right: 3px solid #83B1DF;
+	width: 100px;
+	padding: 30px;
+	position: fixed;
+	z-index: 100000;
+
+	box-shadow: 4px 0 10px rgba(0,0,0,0.25);
+	-moz-box-shadow: 4px 0 10px rgba(0,0,0,0.25);
+	-webkit-box-shadow: 4px 0 10px rgba(0,0,0,0.25);
+}
+
+#menu {
+	left: -130px; /* Change to right: 0; if you want the panel to display on the right side. */
+}
+
+#menu:hover, #menu:focus {
+	left: 0 !important; /* Change to right: 0 !important; if you want the panel to display on the right side. */
+}
+
+#menu .arrow {
+	right: 2px; /* Change to left: 2px; if you want the panel to display on the right side. */
+}
+
+#menu .arrow {
+	font: normal 400 30px/25px 'Acme', Helvetica, Arial, sans-serif; /* Acme font is required for .arrow */
+	color: #D1E0EE; /* Arrow color */
+	width: 16px;
+	height: 25px;
+	display: block;
+	position: absolute;
+	top: 20px;
+	cursor: default;
+}
+
+#menu:hover .arrow {
+	transform: rotate(-180deg) translate(6px,-3px);
+	-moz-transform: rotate(-180deg) translate(6px,-3px);
+	-webkit-transform: rotate(-180deg) translate(6px,-3px);
+}
+
+#menu nav {
+	position: relative;
+	top: 30px;
+}
+
+#menu nav a {
+	padding: 10px 5px;
+	border-bottom: 1px dotted #c0c0c0;
+	display: block;
+	clear: both;
+	font: bold 13px/18px 'Open Sans', Helvetica, Arial, sans-serif;
+	color: #fff;
+	text-decoration: none;
+}
+
+#menu nav a:hover {
+	color: #ee4e1d;
+}
+
+/*****END PANEL*****/
+/***** sliding panel end ***********/

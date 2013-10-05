@@ -16,25 +16,42 @@
   
   <style>
     html, body {height: 100%;}
-    body {background-color:#2c3e50; margin-bottom:80px;}
-    .version {font-size:10pt;}
+    body {background-color:#2c3e50; margin-bottom:80px; margin-left:20px;}
+    .version {font-size:10pt; color:white;}
   </style>
   <script type="text/javascript">
-    
-    
     $('document').ready(function(){
         $('#txtPost').focus();
+        $("#menu").height($(document).height());
     });
     
   </script>
 </head>
 <body ng-controller="DiaryController">
+  
+  <!-- Sliding menu -->
+  <div id="menu">
+    <div class="arrow">></div>
+    
+    <nav>
+      <a href="#home"><i class="icon icon-white icon-home"></i>&nbsp;Home</a>
+      <a href="#profile"><i class="icon icon-white icon-user"></i>&nbsp;Profile</a>
+      <a href="#messages"><i class="icon icon-white icon-envelope"></i>&nbsp;Messages</a>
+      <a href="#settings"><i class="icon icon-white icon-wrench"></i>&nbsp;Settings</a>
+      <a href="#about"><i class="icon icon-white icon-info-sign"></i>&nbsp;About</a>
+      <a href="#logout"><i class="icon icon-white icon-off"></i>&nbsp;Logout</a>
+    </nav>
+  </div>
+  <!-- Sliding menu end -->
+  
+  
   <div id="wrap">
   <div class="container-fluid">
   
     <div class="row-fluid">
       <div class="span12">
         <h1><a href="/mydiary"><img src="img/Book1.png" width="45" height="50">My Diary</a><span class="version">&nbsp;1.0</span></h1>
+        
         
           <textarea name="txtPost" ng-model="txtPost" rows="5" class="form-control span12" placeholder="Share what's new .."  required autofocus></textarea>
           <button name="btnPost" class="btn btn-success btn-large" ng-click="saveNote()" ng-disabled="!txtPost">
@@ -46,11 +63,20 @@
     </div>
   
     <hr></hr>
-    <div class="pull-right label label-warning">{{notescount()}} Posts</div>
+    
         
     <div class="row-fluid">
       <div class="span12">
         <h3 ng-show="notescount()==0" class="text-warning well">No notes in your diary yet !</h3>
+        
+        <div class="pull-right label label-warning">{{notescount}} Posts</div>
+        
+        <div class="pagination pagination-mini pull-left">
+          <ul>
+            <li ng-repeat="page in pages"><a href="javascript:void(0);return false;" ng-click="loadPage($index)">{{page}}</a></li>
+          </ul>
+        </div>
+        
         
         <table class="table" id="mynotes" ng-hide="notescount==0">
           <tr class="info" ng-repeat="item in notes">
@@ -67,7 +93,6 @@
               <div style="color:#2c3e50;margin-top:10px;" ng-bind-html-unsafe="item.note"></div>
             </td>
           </tr>
-          
         </table>
         
       </div>

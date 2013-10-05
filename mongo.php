@@ -8,7 +8,11 @@
    
       // Connect to MongoDB
       private function connect() {
-        $con = new Mongo("mongodb://diaryuser:diaryuser@localhost:27017/mydiary");
+        // Use this connection string to connect to MongoLab server
+        $con = new Mongo("mongodb://diaryuser:diarypassword@ds05492.mongolab.com:63297/mydiary");
+        
+        // Use this connection string for local MongoDB server
+        //$con = new Mongo("mongodb://diaryuser:diaryuser@localhost:27017/mydiary");
         return $con; 
       }
       

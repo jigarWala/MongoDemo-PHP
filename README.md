@@ -27,3 +27,7 @@ alt="MongoDemo PHP - Sliding Panel">
 Email me@jayeshcp.com if you need any help with this project.
 
 Enjoy !
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jayeshcp/mongodemo-php/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
